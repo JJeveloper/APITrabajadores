@@ -1,0 +1,76 @@
+package com.APISecurity.APITrabajadores.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "trabajador")
+public class TrabajadorEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idtrabajador;
+
+    private String cedula;
+
+    private String email;
+
+    private String nombres;
+
+    private String password;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rol_idrol", referencedColumnName = "idrol")
+    RolEntity rolEntity;
+
+    public TrabajadorEntity() {
+
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getIdtrabajador() {
+        return idtrabajador;
+    }
+
+    public void setIdtrabajador(Integer idtrabajador) {
+        this.idtrabajador = idtrabajador;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public RolEntity getRol() {
+        return rolEntity;
+    }
+
+    public void setRol(RolEntity rolEntity) {
+        this.rolEntity = rolEntity;
+    }
+}
