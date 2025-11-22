@@ -1,6 +1,6 @@
-package com.APISecurity.APITrabajadores.Repository;
+package com.APISecurity.APITrabajadores.repository;
 
-import com.APISecurity.APITrabajadores.model.TrabajadorEntity;
+import com.APISecurity.APITrabajadores.model.entity.TrabajadorEntity;
 import jakarta.persistence.Id;
 import org.springframework.data.jpa.repository.JpaRepository;
 

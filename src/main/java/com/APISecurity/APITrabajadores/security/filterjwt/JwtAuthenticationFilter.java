@@ -1,6 +1,6 @@
 package com.APISecurity.APITrabajadores.security.filterjwt;
 
-import com.APISecurity.APITrabajadores.model.TrabajadorEntity;
+import com.APISecurity.APITrabajadores.model.entity.TrabajadorEntity;
 import com.APISecurity.APITrabajadores.security.jwt.JwtUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;

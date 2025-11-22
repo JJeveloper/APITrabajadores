@@ -1,6 +1,6 @@
-package com.APISecurity.APITrabajadores.Repository;
+package com.APISecurity.APITrabajadores.repository;
 
-import com.APISecurity.APITrabajadores.model.RolEntity;
+import com.APISecurity.APITrabajadores.model.entity.RolEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RolRepository extends JpaRepository<RolEntity, Integer> {

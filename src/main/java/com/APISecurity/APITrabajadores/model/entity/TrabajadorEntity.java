@@ -1,4 +1,4 @@
-package com.APISecurity.APITrabajadores.model;
+package com.APISecurity.APITrabajadores.model.entity;
 
 import jakarta.persistence.*;
 

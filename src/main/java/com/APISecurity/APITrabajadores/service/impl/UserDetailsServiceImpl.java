@@ -1,7 +1,7 @@
 package com.APISecurity.APITrabajadores.service.impl;
 
-import com.APISecurity.APITrabajadores.Repository.TrabajadorRepository;
-import com.APISecurity.APITrabajadores.model.TrabajadorEntity;
+import com.APISecurity.APITrabajadores.repository.TrabajadorRepository;
+import com.APISecurity.APITrabajadores.model.entity.TrabajadorEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
