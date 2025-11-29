@@ -8,11 +8,11 @@ public class ErrorMensaje {
 
     public ErrorMensaje(Exception exception, String ruta) {
         this.exception = exception.getClass().getSimpleName();
-        //this.message = exception.getMessage();
+        this.message = exception.getMessage();
         this.ruta = ruta;
     }
 
-    public ErrorMensaje(String exception, String message, String ruta) {
+    public ErrorMensaje(Exception exception, String message, String ruta) {
         this.exception = exception.getClass().getSimpleName();
         this.message = message;
         this.ruta = ruta;

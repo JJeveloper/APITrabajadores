@@ -20,10 +20,18 @@ public class TrabajadorEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rol_idrol", referencedColumnName = "idrol")
-    RolEntity rolEntity;
+    private RolEntity rolEntity;
 
     public TrabajadorEntity() {
 
+    }
+
+    public TrabajadorEntity(String cedula, String email, String nombres, String password, RolEntity rolEntity) {
+        this.cedula = cedula;
+        this.email = email;
+        this.nombres = nombres;
+        this.password = password;
+        this.rolEntity = rolEntity;
     }
 
     public String getCedula() {
@@ -66,11 +74,11 @@ public class TrabajadorEntity {
         this.password = password;
     }
 
-    public RolEntity getRol() {
+    public RolEntity getRolEntity() {
         return rolEntity;
     }
 
-    public void setRol(RolEntity rolEntity) {
+    public void setRolEntity(RolEntity rolEntity) {
         this.rolEntity = rolEntity;
     }
 }

@@ -1,5 +1,7 @@
 package com.APISecurity.APITrabajadores.model.dto;
 
+import com.APISecurity.APITrabajadores.model.entity.RolEntity;
+
 public class TrabajadorDTO {
 
 
@@ -10,6 +12,19 @@ public class TrabajadorDTO {
     private String nombres;
 
     private String password;
+
+    String rol;
+
+    public TrabajadorDTO() {
+    }
+
+    public TrabajadorDTO(String cedula, String email, String nombres, String password, String rol) {
+        this.cedula = cedula;
+        this.email = email;
+        this.nombres = nombres;
+        this.password = password;
+        this.rol = rol;
+    }
 
     public String getCedula() {
         return cedula;
@@ -41,5 +56,13 @@ public class TrabajadorDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

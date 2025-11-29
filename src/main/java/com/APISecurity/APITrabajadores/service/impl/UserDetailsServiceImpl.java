@@ -28,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         TrabajadorEntity trabajador = trabajadorRepository.findByCedula(username)
                 .orElseThrow(() -> new UsernameNotFoundException("No existe el usuario" + username));
 
-        String roles = trabajador.getRol().getRol();
+        String roles = trabajador.getRolEntity().getRol();
 
         return new User(trabajador.getCedula(), trabajador.getPassword(),
 

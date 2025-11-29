@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -37,9 +38,12 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())//desactido para api rest, se usa jwt
                 .authorizeHttpRequests(autorizar -> {
-                    autorizar.requestMatchers("/login").permitAll();
+                    autorizar.requestMatchers("api/v1/inicio").permitAll();
                     autorizar.anyRequest().authenticated();
                 })
+                .sessionManagement(session -> {
+                            session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);}
+                )
                 .addFilter(authenticationFilter)
                 .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -58,11 +62,15 @@ public class SecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    public AuthenticationProvider authenticationProvider(){
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAP = new DaoAuthenticationProvider();
         daoAP.setUserDetailsService(userDetailsService);
         daoAP.setPasswordEncoder(passwordEncoder());
         return daoAP;
     }
+
+    /*public static void main(String[] args){
+        System.out.println(  new BCryptPasswordEncoder().encode("1234"));
+    }*/
 
 }

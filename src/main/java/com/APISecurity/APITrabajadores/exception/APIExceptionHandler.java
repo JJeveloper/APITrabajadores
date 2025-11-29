@@ -27,7 +27,7 @@ public class APIExceptionHandler {
     })
     @ResponseBody
     public ErrorMensaje badRequest(HttpServletRequest request, Exception exception) {
-        return new ErrorMensaje(exception, request.getRequestURI());//, errors
+        return new ErrorMensaje(exception, request.getRequestURI());
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -36,5 +36,7 @@ public class APIExceptionHandler {
     public ErrorMensaje notFoundException(Exception exception, HttpServletRequest webRequest) {
         return new ErrorMensaje(exception, webRequest.getRequestURI());
     }
+
+
 
 }

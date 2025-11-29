@@ -2,14 +2,24 @@ package com.APISecurity.APITrabajadores.model.mapper;
 
 
 import com.APISecurity.APITrabajadores.model.dto.TrabajadorDTO;
+import com.APISecurity.APITrabajadores.model.entity.RolEntity;
 import com.APISecurity.APITrabajadores.model.entity.TrabajadorEntity;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.Named;
 
-@Mapper(componentModel = "spring")
+import java.util.List;
+
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface TrabajadorMapper {
+
+    @Mapping(source = "rolEntity.rol", target = "rol")
+    TrabajadorDTO trabajadorEntityATrabajadorDTO(TrabajadorEntity trabajadorEntity);
 
     TrabajadorEntity trabajadorDTOATrabajadorentity(TrabajadorDTO trabajadorDTO);
 
-    TrabajadorDTO trabajadorEntityATrabajadorDTO(TrabajadorEntity trabajadorEntity);
+    List<TrabajadorDTO> trabajadorDTOList(List<TrabajadorEntity> trabajadorEntityList);
+
 
 }
