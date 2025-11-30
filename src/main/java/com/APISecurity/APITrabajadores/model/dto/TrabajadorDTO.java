@@ -1,18 +1,26 @@
 package com.APISecurity.APITrabajadores.model.dto;
 
-import com.APISecurity.APITrabajadores.model.entity.RolEntity;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public class TrabajadorDTO {
 
-
+    @NotBlank(message = "ingrese su cedula")
+    @Pattern(regexp = "(0[1-9]|1[0-9]|2[0-4]|30)([0-9]{8})", message = " numero de cedula incorrecto")
     private String cedula;
 
+    @Email
     private String email;
 
+    @NotBlank(message = "ingrese sus nombres")
     private String nombres;
 
+    @NotBlank(message = "ingrese su password")
     private String password;
 
+    //@NotBlank(message = "ingrese un rol correcto")
     String rol;
 
     public TrabajadorDTO() {

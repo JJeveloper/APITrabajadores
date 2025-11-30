@@ -2,13 +2,13 @@ package com.APISecurity.APITrabajadores.exception;
 
 public class ErrorMensaje {
 
-    private  String exception;
+    private String exception;
     private String message;
     private String ruta;
 
     public ErrorMensaje(Exception exception, String ruta) {
         this.exception = exception.getClass().getSimpleName();
-        this.message = exception.getMessage();
+       // this.message = exception.getMessage();
         this.ruta = ruta;
     }
 

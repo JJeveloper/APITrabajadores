@@ -51,4 +51,5 @@ public class TrabajadorServiceImpl implements TrabajadorService {
     public List<TrabajadorDTO> listarTrabajadores() {
         return null;
     }
+
 }
