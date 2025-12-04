@@ -1,6 +1,7 @@
 package com.APISecurity.APITrabajadores.service.impl;
 
 import com.APISecurity.APITrabajadores.exception.NotFoundException;
+import com.APISecurity.APITrabajadores.model.dto.ActualizarPasswordDTO;
 import com.APISecurity.APITrabajadores.model.dto.TrabajadorDTO;
 import com.APISecurity.APITrabajadores.model.entity.RolEntity;
 import com.APISecurity.APITrabajadores.model.entity.TrabajadorEntity;
@@ -30,7 +31,6 @@ public class TrabajadorServiceImpl implements TrabajadorService {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     @Override
     public TrabajadorDTO guardarTrabajador(TrabajadorDTO trabajadorDTO) {
 
@@ -48,8 +48,31 @@ public class TrabajadorServiceImpl implements TrabajadorService {
     }
 
     @Override
+    public String actualizarPasswordDTO(Integer id, ActualizarPasswordDTO actPasswordDTO) {
+
+        TrabajadorEntity trabajadorEntity = trabajadorRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("no existe el trabajador"));
+
+        if (!passwordEncoder.matches(actPasswordDTO.getAnteriorpassword(), trabajadorEntity.getPassword())) {
+            throw new NotFoundException("Contrasena anterior incorrecta");
+        }
+
+        trabajadorEntity.setPassword((passwordEncoder.encode(actPasswordDTO.getNuevapassword())));
+
+        trabajadorRepository.save(trabajadorEntity);
+
+        return "Contrasena actualizada correctamente";
+    }
+
+
+    @Override
     public List<TrabajadorDTO> listarTrabajadores() {
-        return null;
+        return trabajadorMapper.trabajadorDTOList(trabajadorRepository.findAll());
+    }
+
+    @Override
+    public void eliminar(int id) {
+
     }
 
 }

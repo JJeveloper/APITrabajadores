@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface TrabajadorRepository extends JpaRepository<TrabajadorEntity, Id> {
+public interface TrabajadorRepository extends JpaRepository<TrabajadorEntity, Integer> {
 
     Optional<TrabajadorEntity> findByCedula(String username);
 }
