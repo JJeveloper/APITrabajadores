@@ -37,9 +37,20 @@ public class TrabajadorController {
         return ResponseEntity.status(HttpStatus.CREATED).body(trabajadorService.actualizarPasswordDTO(id, trabajadorDTO));
     }
 
-    @GetMapping("/listaTrabajador")
+    @GetMapping("/listartrabajador")
     public ResponseEntity<List<TrabajadorDTO>> listarTrabajadores() {
         return ResponseEntity.ok(trabajadorService.listarTrabajadores());
+    }
+
+    @GetMapping("/buscarcedula/{cedula}")
+    public ResponseEntity<TrabajadorDTO> buscarPorCedula(@PathVariable("cedula") String cedula) {
+        return ResponseEntity.ok(trabajadorService.buscarPorCedula(cedula));
+    }
+
+    @DeleteMapping("/eliminartrabajador/{cedula}")
+    public ResponseEntity<Void> eliminarTrabajador(@PathVariable("cedula") String cedula) {
+        trabajadorService.eliminar(cedula);
+        return ResponseEntity.noContent().build();
     }
 
 }

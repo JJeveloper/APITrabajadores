@@ -64,14 +64,33 @@ public class TrabajadorServiceImpl implements TrabajadorService {
         return "Contrasena actualizada correctamente";
     }
 
-
     @Override
     public List<TrabajadorDTO> listarTrabajadores() {
         return trabajadorMapper.trabajadorDTOList(trabajadorRepository.findAll());
     }
 
     @Override
-    public void eliminar(int id) {
+    public TrabajadorDTO buscarPorCedula(String cedula) {
+
+        TrabajadorEntity trabajador = trabajadorRepository.findByCedula(cedula).
+                orElseThrow(() -> {
+                            return new NotFoundException("No existe el trabajador");
+                        }
+                );
+
+        return trabajadorMapper.trabajadorEntityATrabajadorDTO(trabajador);
+    }
+
+    @Override
+    public void eliminar(String cedula) {
+
+        TrabajadorEntity trabajador = trabajadorRepository.findByCedula(cedula).
+                orElseThrow(() -> {
+                            return new NotFoundException("No existe el trabajador");
+                        }
+                );
+
+        trabajadorRepository.delete(trabajador);
 
     }
 

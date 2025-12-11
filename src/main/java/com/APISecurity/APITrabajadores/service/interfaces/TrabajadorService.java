@@ -14,5 +14,7 @@ public interface TrabajadorService {
 
     List<TrabajadorDTO> listarTrabajadores();
 
-    void eliminar(int id);
+    TrabajadorDTO buscarPorCedula(String cedula);
+
+    void eliminar(String cedula);
 }
