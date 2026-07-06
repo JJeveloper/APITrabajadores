@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,26 +29,32 @@ public class TrabajadorController {
     }
 
     @PostMapping("/creartrabajador")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public ResponseEntity<TrabajadorDTO> guardarTrabajador(@Valid @RequestBody TrabajadorDTO trabajadorDTO) {
         return ResponseEntity.ok(trabajadorService.guardarTrabajador(trabajadorDTO));
     }
 
     @PutMapping("actualizarpassword/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public ResponseEntity<String> actualizarPassword(@PathVariable("id") Integer id, @Valid @RequestBody ActualizarPasswordDTO trabajadorDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(trabajadorService.actualizarPasswordDTO(id, trabajadorDTO));
     }
 
     @GetMapping("/listartrabajador")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public ResponseEntity<List<TrabajadorDTO>> listarTrabajadores() {
         return ResponseEntity.ok(trabajadorService.listarTrabajadores());
     }
 
     @GetMapping("/buscarcedula/{cedula}")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public ResponseEntity<TrabajadorDTO> buscarPorCedula(@PathVariable("cedula") String cedula) {
         return ResponseEntity.ok(trabajadorService.buscarPorCedula(cedula));
     }
 
+
     @DeleteMapping("/eliminartrabajador/{cedula}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> eliminarTrabajador(@PathVariable("cedula") String cedula) {
         trabajadorService.eliminar(cedula);
         return ResponseEntity.noContent().build();

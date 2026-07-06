@@ -5,7 +5,6 @@ import com.APISecurity.APITrabajadores.model.dto.TrabajadorDTO;
 
 import java.util.List;
 
-
 public interface TrabajadorService {
 
     TrabajadorDTO guardarTrabajador(TrabajadorDTO trabajadorDTO);

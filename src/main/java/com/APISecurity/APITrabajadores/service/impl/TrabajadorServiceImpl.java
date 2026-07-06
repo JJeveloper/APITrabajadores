@@ -1,5 +1,6 @@
 package com.APISecurity.APITrabajadores.service.impl;
 
+import com.APISecurity.APITrabajadores.exception.BadRequestException;
 import com.APISecurity.APITrabajadores.exception.NotFoundException;
 import com.APISecurity.APITrabajadores.model.dto.ActualizarPasswordDTO;
 import com.APISecurity.APITrabajadores.model.dto.TrabajadorDTO;
@@ -36,6 +37,12 @@ public class TrabajadorServiceImpl implements TrabajadorService {
 
         TrabajadorEntity trabajadorEntity = trabajadorMapper.trabajadorDTOATrabajadorentity(trabajadorDTO);
         trabajadorEntity.setPassword(passwordEncoder.encode(trabajadorDTO.getPassword()));
+
+        String cedula = trabajadorDTO.getCedula();
+
+        if(trabajadorRepository.findByCedula(cedula).isPresent()){
+            throw new NotFoundException("Ya existe la cedula");
+        }
 
         RolEntity rol = rolRepository.findByRol(trabajadorDTO.getRol()).
                 orElseThrow(() -> {

@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     private JwtUtils jwtUtils;
@@ -38,11 +40,15 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())//desactido para api rest, se usa jwt
                 .authorizeHttpRequests(autorizar -> {
-                    autorizar.requestMatchers("api/v1/inicio").permitAll();
+                    autorizar.requestMatchers("api/v1/inicio",
+                            "/swagger-ui/**",
+                            "/v3/api-docs/**",
+                            "/swagger-ui.html").permitAll();
                     autorizar.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> {
-                            session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);}
+                            session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                        }
                 )
                 .addFilter(authenticationFilter)
                 .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class);

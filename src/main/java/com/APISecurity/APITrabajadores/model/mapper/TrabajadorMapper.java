@@ -21,5 +21,4 @@ public interface TrabajadorMapper {
 
     List<TrabajadorDTO> trabajadorDTOList(List<TrabajadorEntity> trabajadorEntityList);
 
-
 }

@@ -3,6 +3,7 @@ package com.APISecurity.APITrabajadores.exception;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -55,5 +56,10 @@ public class APIExceptionHandler {
         return new ResponseEntity<>(errorMensaje, HttpStatus.BAD_REQUEST);
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(AccessDeniedException.class)
+    public ErrorMensaje accessDeniedException(AccessDeniedException exception, HttpServletRequest webRequest){
+        return new ErrorMensaje( exception, "Acceso denegado" ,webRequest.getRequestURI());
+    }
 
 }
