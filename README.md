@@ -12,6 +12,7 @@ Permite la gestión de trabajadores con operaciones CRUD y seguridad basada en r
 - JPA / Hibernate
 - MySQL
 - Maven
+- swagger
 
 ### Seguridad
 - Autenticación mediante JWT
@@ -34,8 +35,8 @@ Permite la gestión de trabajadores con operaciones CRUD y seguridad basada en r
 **Body (JSON):**
  ```bash
  {
-    "username": "0857412025",
-    "password": "123456"
+    "username": "0928745124",
+    "password": "1234"
  }
 ```
 **Respuesta:**
